@@ -2,6 +2,7 @@ Hi!!! English speaking people!!!
 
 Playing with github...
 
+------------------------
 
 Compilar el codigo -> mvn compile
 Crear el jar para ejecutar -> mvn package
