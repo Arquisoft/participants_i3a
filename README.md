@@ -15,4 +15,4 @@ Skeleton of participants module
 - Jose Emilio Labra Gayo (@labra)
 - David García Gonzalez (@dgsama)
 - Pablo García Miranda (@pablogarciamiranda)
-- Fernando Freije Fuente (@DamperFreije)
+- Fernando Freije Fuente (@fernandofreije)
