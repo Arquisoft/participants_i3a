@@ -1,4 +1,4 @@
-package hello;
+package es.uniovi.asw.controller;
 
 
 import org.springframework.stereotype.Controller;
