@@ -2,8 +2,7 @@ package es.uniovi.asw.domain;
 
 import java.sql.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "Users")
 public class User {
@@ -16,7 +15,7 @@ public class User {
 	private String address;
 	private String nationality;
 	private String DNI;
-	private Date birthday;
+    private Date birthday;
 	private String password;
 
 	public User() {
