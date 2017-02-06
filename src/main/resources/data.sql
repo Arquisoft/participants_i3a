@@ -1,9 +1,7 @@
-INSERT INTO Users (id, login, surname, email, address, nationality, dni, birthday, password) 
+INSERT INTO Users (id, login, password, firstName, lastName, address, nationality, DNI, birthday) 
 VALUES
-	(1, 'Fernando', 'Freije', 'freije@example.com', 'asdf', 'Español', '00000001A', '1990-1-1', 1234),
-	(2, 'Pablo', 'García', 'pgarcia@example.com', 'asdf', 'Español', '00000002A', '1990-1-1', 1234),
-	(3, 'David', 'García', 'dgonzalez@example.com', 'asdf', 'Español', '00000003A', '1990-1-1', 1234),
-	(4, 'Juan', 'Torres Prado', 'juan@example.com', 'C/ Federico García Lorca 2', 'Español', '90500084Y','1990-1-1', 1234),
-	(5, 'Luis', 'López Fernando', 'luis@example.com', 'C/ Real Oviedo 2', 'Español', '19160962F','1990-1-1', 1234),
-	(6, 'Ana', 'Torres Pardo', 'ana@example.com', 'Av. De la Constitución 8', 'Español', '09940449X', '1990-1-1', 1234);
-	
+	(1, 'freije@example.com', 'asdf', 'Fernando', 'Freije', 'Calle Adosinda', 'Español', '00000001A', '1990-1-1'),
+	(2, 'pablo@example.com', 'asdf', 'Pablo', 'Garcia', 'Calle Asturias', 'Español', '00000002A', '1991-1-1'),
+	(3, 'david@example.com', 'asdf', 'David', 'Garcia', 'Calle Azteca', 'Español', '00000003A', '1992-1-1'),
+	(4, 'Juan@example.com', 'asdf', 'Juan', 'Torres', 'Calle Federico Garcia Lorca', 'Español', '90500084Y', '1993-1-1'),
+	(5, 'Luis@example.com', 'asdf', 'Luis', 'López', 'Calle Adosinda', 'Español', '19160962F', '1994-1-1');

@@ -12,8 +12,8 @@ public class User {
 	private Long id;
 	private String login;
 	private String password;
-	private String firstName;
-	private String lastName;
+	private String firstname;
+	private String lastname;
 	private String address;
 	private String nationality;
 	private String DNI;
@@ -22,14 +22,14 @@ public class User {
 	public User() {
 	}
 
-	public User(Long id, String login, String password, String firstName, String lastName, String address,
+	public User(Long id, String login, String password, String firstname, String lastname, String address,
 	        String nationality, String dNI, Date birthday) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.address = address;
 		this.nationality = nationality;
 		this.DNI = dNI;
@@ -61,19 +61,19 @@ public class User {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getAddress() {
@@ -119,9 +119,9 @@ public class User {
 		result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nationality == null) ? 0 : nationality.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -152,20 +152,20 @@ public class User {
 				return false;
 		} else if (!birthday.equals(other.birthday))
 			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
+		if (firstname == null) {
+			if (other.firstname != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		} else if (!firstname.equals(other.firstname))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
+		if (lastname == null) {
+			if (other.lastname != null)
 				return false;
-		} else if (!lastName.equals(other.lastName))
+		} else if (!lastname.equals(other.lastname))
 			return false;
 		if (login == null) {
 			if (other.login != null)
@@ -187,8 +187,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstName
-		        + ", lastName=" + lastName + ", address=" + address + ", nationality=" + nationality + ", DNI=" + DNI
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstname
+		        + ", lastName=" + lastname + ", address=" + address + ", nationality=" + nationality + ", DNI=" + DNI
 		        + ", birthday=" + birthday + "]";
 	}
 }
