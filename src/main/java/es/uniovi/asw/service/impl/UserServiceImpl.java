@@ -17,8 +17,23 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findAll() {
-
 		return userRepository.findAll();
+	}
+
+	@Override
+	public User findById(long id) {
+		return userRepository.findOne(id);
+	}
+
+	@Override
+	public User findByLogin(String login) {
+		return userRepository.findByLogin(login);
+	}
+
+	@Override
+	public void save(User user) {
+		userRepository.save(user);
+		
 	}
 
 	// IMPLEMENT HERE CRUD METHODS \\
