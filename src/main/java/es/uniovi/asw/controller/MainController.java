@@ -11,20 +11,31 @@ public class MainController {
 
     @RequestMapping("/")
     public String landing(Model model) {
-    	//model.addAttribute("nombre", "Amigo");
         return "index";
     }
     
-    @RequestMapping("/hola")
-    public String hola(Model model) {
-    	//model.addAttribute("nombre", "Luis");
+    @RequestMapping("/welcome")
+    public String welcome(Model model){ 
         return "index";
+    }
+    
+    @RequestMapping("/hello")
+    public String hola(Model model) {
+        return "hello";
     }
     
     @RequestMapping("/info")
     public String info(Model model) {
     	//model.addAttribute("nombre", "Luis");
+    	//do something when showing info
         return "info";
+    }
+    
+    @RequestMapping("/login")
+    public String login(Model model) {
+    	//model.addAttribute("nombre", "Luis");
+    	//do something with login
+        return "login";
     }
 
 }
