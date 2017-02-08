@@ -5,16 +5,16 @@ import es.uniovi.asw.util.AgeCalculator;
 
 public class UserDto {
 
-	private String firstName;
-	private String lastName;
+	private String firstname;
+	private String lastname;
 	private int age;
 	private Long id;
 	private String email;
 
-	public UserDto(String firstName, String lastName, int age, Long id, String email) {
+	public UserDto(String firstname, String lastname, int age, Long id, String email) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.age = age;
 		this.id = id;
 		this.email = email;
@@ -29,20 +29,20 @@ public class UserDto {
 		        user.getId(), user.getLogin());
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public Integer getAge() {

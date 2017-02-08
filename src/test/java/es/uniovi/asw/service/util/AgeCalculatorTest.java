@@ -18,7 +18,7 @@ public class AgeCalculatorTest {
 		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = fmt.parse("1996-05-09");
 
-		int actual = AgeCalculator.calculateAge(date);
+		int actual = AgeCalculator.calculateAge((java.sql.Date) date);
 		assertEquals(20, actual);
 	}
 

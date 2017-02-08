@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
   <title>Participants Information</title>  
@@ -11,16 +11,14 @@
 	</div>
   <div class="informacion">
 	<h1>Personal data: </h1>
-	<p>Name: <!-- nombre del usuario--></p>
-	<p>Surname: <!-- apellidos del usuario--></p>	
-	<p>Birthday: <!-- fefcha de nacimiento del usuario formato dd/mm/yyyy--></p>
-	<p>DNI: <!-- dni del usuario formato xxxxxxxxA --></p>
-	<p>Address: <!-- direccion del usuario--></p>
-	<p>Nationality: <!-- nacionalidad del usuario--></p>
-	<p>Email: <!-- email del usuario--></p>
+	<p>Firstname: <span th:text="${user.firstname}"></span></p>
+	<p>Lastname: <span th:text="${user.lastname}"></span></p>
+	<p>Age: <span th:text="${user.age}"></span></p>
+	<p>ID: <span th:text="${user.id}"></span></p>
+	<p>Email: <span th:text="${user.email}"></span></p>
 	
 	<h1>Account settings</h1>
-	<p>New Password    <button type="submit" class="btn">Change it!</button></p>
+	<a th:href="${'changePassword/' + user.id}">Change your password</a>
    </div>  
 </body>
 </html>

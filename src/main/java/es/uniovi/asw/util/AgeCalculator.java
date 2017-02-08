@@ -1,9 +1,10 @@
 package es.uniovi.asw.util;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.Date;
+import java.sql.Date;
 
 public class AgeCalculator {
 
@@ -13,9 +14,9 @@ public class AgeCalculator {
 	 * @return the years of an user
 	 */
 	public static int calculateAge(Date birthDate) {
-		LocalDate birthLocalDate = birthDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		LocalDate birthLocalDate = birthDate.toLocalDate();
 		LocalDate currentDate = LocalDate.now();
-		if ((birthDate != null) && (currentDate != null)) {
+		if ((birthLocalDate != null) && (currentDate != null)) {
 			return Period.between(birthLocalDate, currentDate).getYears();
 		} else {
 			return 0;
