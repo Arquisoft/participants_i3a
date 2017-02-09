@@ -11,14 +11,14 @@
 	</div>
   <div class="informacion">
 	<h1>Personal data: </h1>
-	<p>Firstname: <span th:text="${user.firstname}"></span></p>
-	<p>Lastname: <span th:text="${user.lastname}"></span></p>
-	<p>Age: <span th:text="${user.age}"></span></p>
-	<p>ID: <span th:text="${user.id}"></span></p>
-	<p>Email: <span th:text="${user.email}"></span></p>
+	<p>Firstname: <span th:text="${userDto.firstname}"></span></p>
+	<p>Lastname: <span th:text="${userDto.lastname}"></span></p>
+	<p>Age: <span th:text="${userDto.age}"></span></p>
+	<p>ID: <span th:text="${userDto.id}"></span></p>
+	<p>Email: <span th:text="${userDto.email}"></span></p>
 	
 	<h1>Account settings</h1>
-	<a th:href="${'changePassword/' + user.id}">Change your password</a>
+	<a th:href="${'changePassword/' + userDto.id}">Change your password</a>
    </div>  
 </body>
 </html>
