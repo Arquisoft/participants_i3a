@@ -22,9 +22,9 @@ spring:
   profiles: prod
 datasource:
   sampleapp:
-    url: 
-    username: 
-    password: 
+    url: http://mysql.ciensbvk8ssi.eu-west-1.rds.amazonaws.com:3306/
+    username: brreaker
+    password: ASW13372017
     driverClassName: com.mysql.jdbc.Driver
     defaultSchema:
     maxPoolSize: 20
