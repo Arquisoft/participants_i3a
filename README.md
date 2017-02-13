@@ -9,10 +9,13 @@
 
 Skeleton of participants module
 
+# Collaborators
+
+- David García Gonzalez (@dgsama)
+- Pablo García Miranda (@pablogarciamiranda)
+- Fernando Freije Fuente (@fernandofreije)
+
 # Authors
 
 - Herminio García González (@herminiogg)
 - Jose Emilio Labra Gayo (@labra)
-- David García Gonzalez (@dgsama)
-- Pablo García Miranda (@pablogarciamiranda)
-- Fernando Freije Fuente (@fernandofreije)
