@@ -1,4 +1,4 @@
-package es.uniovi.asw.service.util;
+package es.uniovi.asw.util;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.Test;
 
+import es.uniovi.asw.DateConversor;
 import es.uniovi.asw.util.AgeCalculator;
 
 public class AgeCalculatorTest {
@@ -15,12 +16,8 @@ public class AgeCalculatorTest {
 	@Test
 	public void testCalculateAge_Success() throws ParseException {
 
-		final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		final String input = "09-05-1996";
-		final LocalDate localDate = LocalDate.parse(input, DATE_FORMAT);
-		
-		java.sql.Date sqlDate = java.sql.Date.valueOf( localDate );
-		
+		java.sql.Date sqlDate = DateConversor.createSqlDate("09-05-1996");
+
 		int age = AgeCalculator.calculateAge(sqlDate);
 		assertEquals(20, age);
 	}

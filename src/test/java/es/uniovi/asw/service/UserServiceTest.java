@@ -18,6 +18,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import es.uniovi.asw.Application;
 import es.uniovi.asw.domain.User;
+import es.uniovi.asw.service.UserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
