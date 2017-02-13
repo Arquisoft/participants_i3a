@@ -9,15 +9,3 @@ Crear el jar para ejecutar -> mvn package
 ejecutar -> java -jar target\...
 
 ejecutar tests -> mvn test
-
-
-      String diaComienzo = getSpnDiaComienzo().getValue().toString();
-						String mesComienzo = getSpnMesComienzo().getValue().toString();
-						String añoComienzo = getSpnAñoComienzo().getValue().toString();
-						String fechaComienzo = añoComienzo + "-" + mesComienzo + "-" + diaComienzo;
-						Date comienzo = obtenerFechaDeString(fechaComienzo);
-
-						Calendar c = Calendar.getInstance();
-						int añoActual = c.get(Calendar.YEAR);
-						int mesActual = c.get(Calendar.MONTH);
-						int diaActual = c.get(Calendar.DAY_OF_MONTH);      
