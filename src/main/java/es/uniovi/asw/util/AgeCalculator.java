@@ -1,9 +1,7 @@
 package es.uniovi.asw.util;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.sql.Date;
 
 public class AgeCalculator {
