@@ -22,7 +22,7 @@ public class User {
 	}
 
 	public User(Long id, String login, String password, String firstname, String lastname, String address,
-	        String nationality, String dNI, Date birthday) {
+			String nationality, String dNI, Date birthday) {
 		super();
 		this.id = id;
 		this.login = login;
@@ -108,7 +108,7 @@ public class User {
 	}
 
 	public String toStringLogin() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + "]";
+		return "User [" + login + "," + password + "]";
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", login=" + login + ", password=" + password + ", firstName=" + firstname
-		        + ", lastName=" + lastname + ", address=" + address + ", nationality=" + nationality + ", DNI=" + DNI
-		        + ", birthday=" + birthday + "]";
+				+ ", lastName=" + lastname + ", address=" + address + ", nationality=" + nationality + ", DNI=" + DNI
+				+ ", birthday=" + birthday + "]";
 	}
 }
