@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Error</title>
+</head>
+<body>
+	<div class="container">
+	<h1>Ups, something went wrong :(</h1>
+	<h2>Go back to other sections of the site</h2>
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<li><a th:href="@{/}"> Home </a></li>
+					<li><a th:href="@{/login}" > Login page </a></li>
+				</ul>
+			</div>
+		</div>
+		<h2>Error information:</h2>
+		<div >Time of error: <span id="created" th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}">Date</span></div>
+		<h3 th:text="${errorMessage}">Fake content</h3>
+		
+		
+	</div>
+</body>
+</html>

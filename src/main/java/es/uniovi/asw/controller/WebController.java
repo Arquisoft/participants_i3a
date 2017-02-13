@@ -8,11 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import es.uniovi.asw.domain.User;
 import es.uniovi.asw.dto.UserChangePassword;
@@ -36,11 +35,6 @@ public class WebController {
 		return "index";
 	}
 
-	@RequestMapping("/hello")
-	public String hola(Model model) {
-		return "hello";
-	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -58,15 +52,16 @@ public class WebController {
 		//If the user is not in the db
 		if (user == null) {
 			model = new ModelAndView("error");
-		}
+			model.addObject("errorMessage", "That username is not in our database");
+		} else if (!user.getPassword().equals(userLogin.getPassword())) {
 		//If the password is not correct
-		if (!user.getPassword().equals(userLogin.getPassword())) {
 			model = new ModelAndView("error");
+			model.addObject("errorMessage", "Password is not correct");
+		} else{
+			model = new ModelAndView("info");
+			UserDto userDto = UserDto.transform(user);
+			model.addObject("userDto", userDto);	
 		}
-		model = new ModelAndView("info");
-		UserDto userDto = UserDto.transform(user);
-		model.addObject("userDto", userDto);
-
 		return model;
 	}
 	
@@ -91,18 +86,21 @@ public class WebController {
 		//If password does not match the old password of the user, error
 		if (!user.getPassword().equals(userUpdated.getPassword())) {
 			model = new ModelAndView("error");
-		}
+			model.addObject("errorMessage", "Password is not correct");
+		} else
 		//If old password and new passwords are the same, error
 		if (userUpdated.getNewPassword().equals(userUpdated.getPassword())) {
 			model = new ModelAndView("error");
-		}
-		//If it´s correct, set the newPassword to the user and save it in the db
-		user.setPassword(userUpdated.getNewPassword());
-		userService.save(user);
+			model.addObject("errorMessage", "New password is equal to old password");
+		} else{
+			//If it´s correct, set the newPassword to the user and save it in the db
+			user.setPassword(userUpdated.getNewPassword());
+			userService.save(user);
 
-		UserDto userDto = UserDto.transform(user);
-		model = new ModelAndView("info");
-		model.addObject("userDto", userDto);
+			UserDto userDto = UserDto.transform(user);
+			model = new ModelAndView("info");
+			model.addObject("userDto", userDto);
+		}
 
 		return model;
 	}
