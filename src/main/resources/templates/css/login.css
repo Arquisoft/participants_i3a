@@ -1,18 +1,16 @@
-html{
-background-color:#A9BCF5;
+html {
+    background-color: #A9BCF5;
 }
 body {
-  background-color:#fff;
-  -webkit-font-smoothing: antialiased;
-  font: normal 14px Roboto,arial,sans-serif;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    font: normal 14px Roboto, arial, sans-serif;
 }
-
 .container {
     padding: 10%;
-	vertical-align:middle;	
+    vertical-align: middle;
     position: fixed;
 }
-
 .form-login {
     background-color: #EDEDED;
     padding-top: 10px;
@@ -20,22 +18,19 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 15px;
-    border-color:#d2d2d2;
+    border-color: #d2d2d2;
     border-width: 5px;
-    box-shadow:0 1px 0 #cfcfcf;
+    box-shadow: 0 1px 0 #cfcfcf;
 }
-
-h1 { 
- border:0 solid #fff; 
- border-bottom-width:1px;
- padding-bottom:10px;
- text-align: center;
+h1 {
+    border: 0 solid #fff;
+    border-bottom-width: 1px;
+    padding-bottom: 10px;
+    text-align: center;
 }
-
 .form-control {
     border-radius: 10px;
 }
-
 .wrapper {
     text-align: center;
 }

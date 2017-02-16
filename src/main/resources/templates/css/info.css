@@ -5,7 +5,6 @@ body {
 
 .profile {
     margin: 20px 0;
-	
 }
 /* Profile sidebar */
 
@@ -91,6 +90,7 @@ body {
     margin-left: 15px;
 }
 /* NAVIGATION STYLE*/
+
 .navbar-name {
     position: relative;
     margin-top: 12px;
