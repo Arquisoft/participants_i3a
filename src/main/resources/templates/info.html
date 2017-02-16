@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8"/>
-  <title>Participants Information</title>  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <title>Participants Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/info.css">
 </head>
-<body>
- <nav class="navbar navbar-default">
- 
- <div class="navbar-header">
-         <p class="navbar-name">Welcome: <span th:text="${userDto.firstname}"></span>!!</p>
-        </div>
-      <div class="container">
-	   <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-			<button type="submit" class="btn btn-default btn-circle" >Logout</button>
-            </li>
-          </ul>
-        </div>
-      </div>
-	  </nav>
-	  
-  <div class="informacion">
-	<h1>Personal data: </h1>
-	<p>Firstname: <span th:text="${userDto.firstname}"></span></p>
-	<p>Lastname: <span th:text="${userDto.lastname}"></span></p>
-	<p>Age: <span th:text="${userDto.age}"></span></p>
-	<p>ID: <span th:text="${userDto.id}"></span></p>
-	<p>Email: <span th:text="${userDto.email}"></span></p>
-	
-	<h1>Account settings</h1>
-	<a th:href="${'changePassword/' + userDto.id}">Change your password</a>
-   </div>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>   
+<body>
+    <nav class="navbar navbar-default">
+
+        <div class="navbar-header">
+            <p class="navbar-name">Welcome: <span th:text="${userDto.firstname}"></span>!!</p>
+        </div>
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <button type="submit" class="btn btn-default btn-circle">Logout</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <div class="profile-userpic">
+                        <img src="avatar.png" alt="">
+                    </div>
+                    <div class="profile-usertitle">
+                        <div class="profile-usertitle-name">
+                            <p>Firstname: <span th:text="${userDto.firstname}"></span>
+                            </p>
+                            <p>Lastname: <span th:text="${userDto.lastname}"></span>
+                            </p>
+                            <p>Age: <span th:text="${userDto.age}"></span>
+                            </p>
+                            <p>ID: <span th:text="${userDto.id}"></span>
+                            </p>
+                            <p>Email: <span th:text="${userDto.email}"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <p class = "profile-accountSettings">Account settings:
+                                <p>
+                                    <li>
+                                        <a th:href="${'changePassword/' + userDto.id}">
+                                            <i class="glyphicon glyphicon-user"></i> Change your password</a>
+                                    </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="profile-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
+
 </html>

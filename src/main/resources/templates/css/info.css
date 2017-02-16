@@ -1,22 +1,156 @@
-.navbar-name { position: relative; margin-top:15px; margin-left:15px; font-size:20px; }
+body {
+    background: #F1F3FA;
+}
+/* Profile container */
 
-.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; }
+.profile {
+    margin: 20px 0;
+	
+}
+/* Profile sidebar */
 
-.navbar .navbar-collapse { position: relative; }
-.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
+.profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: #fff;
+}
+.profile-userpic img {
+    float: none;
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+    -webkit-border-radius: 50% !important;
+    -moz-border-radius: 50% !important;
+    border-radius: 50% !important;
+}
+.profile-usertitle {
+    text-align: center;
+    margin-top: 20px;
+}
+.profile-usertitle-name {
+    color: #5a7391;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+.profile-userbuttons {
+    text-align: center;
+    margin-top: 10px;
+}
+.profile-userbuttons .btn {
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 15px;
+    margin-right: 5px;
+}
+.profile-userbuttons .btn:last-child {
+    margin-right: 0px;
+}
+.profile-usermenu {
+    margin-top: 30px;
+}
+.profile-usermenu ul li {
+    border-bottom: 1px solid #f0f4f7;
+}
+.profile-usermenu ul li:last-child {
+    border-bottom: none;
+}
+.profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+}
+.profile-usermenu ul li a i {
+    margin-right: 8px;
+    font-size: 14px;
+}
+.profile-usermenu ul li a:hover {
+    background-color: #fafcfd;
+    color: #5b9bd1;
+}
+.profile-usermenu ul li.active {
+    border-bottom: none;
+}
+.profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+}
+/* Profile Content */
 
-.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
-.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
-.navbar.navbar-inverse .nav-collapse { background-color: #222; }
-.nav-collapse>li { float: right; }
-
-.btn.btn-circle { border-radius: 50px; }
-.btn.btn-outline { background-color: transparent; }
-
+.profile-content {
+    padding: 20px;
+    background: #fff;
+    min-height: 460px;
+}
+.profile-accountSettings {
+    color: #0B0B61;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 15px;
+}
+/* NAVIGATION STYLE*/
+.navbar-name {
+    position: relative;
+    margin-top: 12px;
+    margin-left: 15px;
+    color: #0B0B61;
+    font-size: 20px;
+    font-weight: 600;
+}
+.navbar-nav.navbar-right .btn {
+    position: relative;
+    z-index: 2;
+    padding: 4px 20px;
+    margin: 10px auto;
+}
+.navbar .navbar-collapse {
+    position: relative;
+}
+.navbar .navbar-collapse .navbar-right > li:last-child {
+    padding-left: 22px;
+}
+.navbar .nav-collapse {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding-right: 120px;
+    padding-left: 80px;
+    width: 100%;
+}
+.navbar.navbar-default .nav-collapse {
+    background-color: #f8f8f8;
+}
+.navbar.navbar-inverse .nav-collapse {
+    background-color: #222;
+}
+.nav-collapse>li {
+    float: right;
+}
+.btn.btn-circle {
+    border-radius: 50px;
+}
+.btn.btn-outline {
+    background-color: transparent;
+}
 @media screen and (max-width: 767px) {
-    .navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 15px; padding-right: 15px; } 
-    
-    .navbar .nav-collapse { margin: 7.5px auto; padding: 0; }
-    .navbar .nav-collapse .navbar-form { margin: 0; }
-    .nav-collapse>li { float: right; }
+    .navbar .navbar-collapse .navbar-right > li:last-child {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .navbar .nav-collapse {
+        margin: 7.5px auto;
+        padding: 0;
+    }
+    .navbar .nav-collapse .navbar-form {
+        margin: 0;
+    }
+    .nav-collapse>li {
+        float: right;
+    }
 }
