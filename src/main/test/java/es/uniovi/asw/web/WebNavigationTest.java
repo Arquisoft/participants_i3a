@@ -1,8 +1,14 @@
 package es.uniovi.asw.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
+import java.sql.Date;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +19,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.RequestBuilder;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import es.uniovi.asw.domain.User;
+import es.uniovi.asw.service.UserService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -26,7 +33,26 @@ public class WebNavigationTest {
 	private TestRestTemplate restTemplate;
 	
 	
-	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+	@Autowired
+	private UserService userService;
+	
+	private User testUser;
+	
+	
+	@Before
+	public void setUp(){
+		
+		
+		testUser = new User();
+		testUser.setId(99999L);
+		testUser.setLogin("example@example.com");
+		testUser.setPassword("asdf");
+		testUser.setFirstName("example");
+		testUser.setLastName("testUser");
+		Date date = new java.sql.Date(new java.util.Date().getTime());
+		testUser.setBirthday(date);
+		userService.save(testUser);
+	}
 
 
 	@Test
@@ -48,11 +74,52 @@ public class WebNavigationTest {
 	@Test
 	public void LoginInfoTest() {
 		
-		RequestBuilder requestBuilder = post("/login")
-	            .param("u", "freije@example.com")
-	            .param("p", "asdf");
+		RequestBuilder requestLogin = post("/login")
+	            .param("u", testUser.getLogin())
+	            .param("p", testUser.getPassword());
 		
-		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestBuilder, String.class).contains("freije"));
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLogin, String.class).contains(testUser.getFirstName()));
+		
+		assertThat(restTemplate.getForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(), String.class).contains("Change your password"));           
+		
+	}
+	
+	@Test
+	public void ChangePasswordTest() {
+		
+		String newPassword = "nuevaContraseña";
+		
+		RequestBuilder requestChange = post("/changePassword/"+testUser.getId())
+	            .param("op", testUser.getPassword())
+	            .param("p", newPassword);
+		
+		RequestBuilder requestChangeFail = post("/changePassword/"+testUser.getId())
+	            .param("op", "hola")
+	            .param("p", newPassword);
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(),requestChangeFail,String.class).contains("Error"));
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(),requestChange,String.class).contains("Participants Info"));
+		
+		RequestBuilder requestLoginFail = post("/login")
+	            .param("u", testUser.getLogin())
+	            .param("p", testUser.getPassword());
+		
+		RequestBuilder requestLogin = post("/login")
+	            .param("u", testUser.getLogin())
+	            .param("p", newPassword);
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLoginFail, String.class).contains("Error"));
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLogin, String.class).contains(testUser.getFirstName()));
+		
+			
+	}
+	
+	
+	@After
+	public void close(){
+		userService.delete(testUser);
 	}
 
 
