@@ -18,8 +18,6 @@ public class AgeCalculatorTest {
 		int age = AgeCalculator.calculateAge(sqlDate);
 		assertEquals(20, age);
 
-		age = AgeCalculator.calculateAge(null);
-		assertEquals(0, age);
 	}
 
 }
