@@ -1,8 +1,6 @@
 package es.uniovi.asw.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.sql.Date;
@@ -110,6 +108,46 @@ public class WebNavigationTest {
 	            .param("p", newPassword);
 		
 		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLoginFail, String.class).contains("Error"));
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLogin, String.class).contains(testUser.getFirstName()));
+		
+			
+	}
+	
+	
+	//This test was created due a to a bug we found in the code
+	@Test
+	public void ChangePasswordTwoTimesTest() {
+		
+		String newPassword = "nuevaContraseña";
+		
+		RequestBuilder requestChange = post("/changePassword/"+testUser.getId())
+	            .param("op", testUser.getPassword())
+	            .param("p", newPassword);
+		
+		RequestBuilder requestChange2 = post("/changePassword/"+testUser.getId())
+	            .param("op", testUser.getPassword())
+	            .param("p", testUser.getPassword());
+		
+		RequestBuilder requestChangeFail = post("/changePassword/"+testUser.getId())
+	            .param("op", "hola")
+	            .param("p", newPassword);
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(),requestChangeFail,String.class).contains("Error"));
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(),requestChange,String.class).contains("Participants Info"));
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/changePassword/"+testUser.getId(),requestChange2,String.class).contains("Participants Info"));
+		
+		RequestBuilder requestLogin = post("/login")
+	            .param("u", testUser.getLogin())
+	            .param("p", testUser.getPassword());
+		
+		RequestBuilder requestLoginFail = post("/login")
+	            .param("u", testUser.getLogin())
+	            .param("p", newPassword);
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLoginFail, String.class).contains("Info"));
 		
 		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestLogin, String.class).contains(testUser.getFirstName()));
 		
