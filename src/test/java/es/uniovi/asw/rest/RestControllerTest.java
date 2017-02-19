@@ -1,6 +1,7 @@
 package es.uniovi.asw.rest;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import java.net.URL;
@@ -50,6 +51,12 @@ public class RestControllerTest {
 		response = template.postForEntity(userURI, userLogin, String.class);
 		assertThat(response.getBody(), equalTo(
 		        "{\"firstname\":\"Pablo\",\"lastname\":\"Garcia\",\"age\":26,\"id\":2,\"email\":\"pablo@example.com\"}"));
+		assertEquals(response.getStatusCode().value(), 200);
+
+		userLogin.setLogin("pablo@example.com");
+		userLogin.setPassword("1234");
+		response = template.postForEntity(userURI, userLogin, String.class);
+		assertEquals(response.getStatusCode().value(), 404);
 
 	}
 
@@ -65,7 +72,12 @@ public class RestControllerTest {
 		response = template.postForEntity(userURI, userChangePassword, String.class);
 		assertThat(response.getBody(), equalTo(
 		        "{\"firstname\":\"Pablo\",\"lastname\":\"Garcia\",\"age\":26,\"id\":2,\"email\":\"pablo@example.com\"}"));
+		assertEquals(response.getStatusCode().value(), 200);
 
+		userChangePassword.setLogin("pablo@example.com");
+		userChangePassword.setPassword("pepito");
+		response = template.postForEntity(userURI, userChangePassword, String.class);
+		assertEquals(response.getStatusCode().value(), 404);
 	}
 
 }
