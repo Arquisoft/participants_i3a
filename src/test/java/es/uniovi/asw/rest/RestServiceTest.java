@@ -1,25 +1,18 @@
 package es.uniovi.asw.rest;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import es.uniovi.asw.Application;
-import es.uniovi.asw.dto.UserDto;
-import es.uniovi.asw.service.UserService;
+import es.uniovi.asw.service.Participants;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -32,7 +25,7 @@ public class RestServiceTest {
   //Required to delete the data added for tests.
   //Directly invoke the APIs interacting with the DB
   @Autowired
-  private UserService userService;
+  private Participants participants;;
 
   //Test RestTemplate to invoke the APIs.
   private TestRestTemplate restTemplate = new TestRestTemplate();

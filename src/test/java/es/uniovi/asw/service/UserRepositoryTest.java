@@ -18,20 +18,20 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import es.uniovi.asw.Application;
 import es.uniovi.asw.domain.User;
-import es.uniovi.asw.service.UserService;
+import es.uniovi.asw.repository.UserRepository;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({ "server.port=0" })
-public class UserServiceTest {
+public class UserRepositoryTest {
 
 	User user1;
 	User user2;
 	
 	@Autowired
-	UserService userService;
+	UserRepository userService;
 	
 	@Before
 	public void setUp() throws Exception {

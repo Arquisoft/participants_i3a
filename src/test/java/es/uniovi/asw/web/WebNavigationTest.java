@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.RequestBuilder;
 
 import es.uniovi.asw.domain.User;
-import es.uniovi.asw.service.UserService;
+import es.uniovi.asw.repository.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -32,7 +32,7 @@ public class WebNavigationTest {
 	
 	
 	@Autowired
-	private UserService userService;
+	private UserRepository userRepository;
 	
 	private User testUser;
 	
@@ -49,7 +49,7 @@ public class WebNavigationTest {
 		testUser.setLastName("testUser");
 		Date date = new java.sql.Date(new java.util.Date().getTime());
 		testUser.setBirthday(date);
-		userService.save(testUser);
+		userRepository.save(testUser);
 	}
 
 
@@ -157,7 +157,7 @@ public class WebNavigationTest {
 	
 	@After
 	public void close(){
-		userService.delete(testUser);
+		userRepository.delete(testUser);
 	}
 
 
