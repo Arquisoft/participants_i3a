@@ -15,25 +15,27 @@ import es.uniovi.asw.domain.User;
 import es.uniovi.asw.dto.UserChangePassword;
 import es.uniovi.asw.dto.UserDto;
 import es.uniovi.asw.dto.UserLogin;
-import es.uniovi.asw.service.UserService;
+import es.uniovi.asw.repository.UserRepository;
+import es.uniovi.asw.service.Participants;
 
 @RestController
 public class RESTController {
 
 	@Autowired
-	UserService userService;
+	Participants participants;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@RequestMapping("/users")
 	public List<User> users() {
-		return userService.findAll();
+		return userRepository.findAll();
 	}
 
-	@RequestMapping(value = "/user", 
-			method = RequestMethod.POST,
-			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-    		produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE,
+	        MediaType.APPLICATION_XML_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDto> user(@RequestBody UserLogin userLogin) {
-		User user = userService.findByLogin(userLogin.getLogin());
+		User user = participants.GetParticipant(userLogin.getLogin(), userLogin.getPassword());
 
 		if (user == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,29 +44,28 @@ public class RESTController {
 
 		UserDto userDto = UserDto.transform(user);
 
-		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		return new ResponseEntity<>(userDto, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/user/password",
-			method = RequestMethod.POST,
-			consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
-    		produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/user/password", method = RequestMethod.POST, consumes = {
+	        MediaType.APPLICATION_JSON_VALUE,
+	        MediaType.APPLICATION_XML_VALUE }, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<UserDto> updatePassword(@RequestBody UserChangePassword userChangePassword) {
-		User user = userService.findByLogin(userChangePassword.getLogin());
-		
+		User user = participants.GetParticipant(userChangePassword.getLogin(), userChangePassword.getPassword());
+
 		//If password does not match the old password of the user, error
-		if (!user.getPassword().equals(userChangePassword.getPassword())) {
+		if (user == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
 		//Passwords can not be equal
 		if (!user.getPassword().equals(userChangePassword.getPassword()))
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		user.setPassword(userChangePassword.getNewPassword());
-		userService.save(user);
+
+		participants.UpdateInfo(userChangePassword.getLogin(), userChangePassword.getPassword(),
+		        userChangePassword.getNewPassword());
 
 		UserDto userDto = UserDto.transform(user);
 
-		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
+		return new ResponseEntity<>(userDto, HttpStatus.OK);
 	}
 
 }

@@ -16,13 +16,17 @@ import es.uniovi.asw.domain.User;
 import es.uniovi.asw.dto.UserChangePassword;
 import es.uniovi.asw.dto.UserDto;
 import es.uniovi.asw.dto.UserLogin;
-import es.uniovi.asw.service.UserService;
+import es.uniovi.asw.repository.UserRepository;
+import es.uniovi.asw.service.Participants;
 
 @Controller
 public class WebController {
 
 	@Autowired
-	UserService userService;
+	Participants participants;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@RequestMapping("/")
 	public String landing(Model model) {
@@ -46,17 +50,13 @@ public class WebController {
 	public ModelAndView loginInfo(@ModelAttribute("user") UserLogin userLogin, HttpServletRequest request,
 	        HttpServletResponse response) {
 
-		User user = userService.findByLogin(userLogin.getLogin());
+		User user = participants.GetParticipant(userLogin.getLogin(), userLogin.getPassword());
 		ModelAndView model = null;
 
 		//If the user is not in the db
 		if (user == null) {
 			model = new ModelAndView("error");
 			model.addObject("errorMessage", "That username is not in our database");
-		} else if (!user.getPassword().equals(userLogin.getPassword())) {
-			//If the password is not correct
-			model = new ModelAndView("error");
-			model.addObject("errorMessage", "Password is not correct");
 		} else {
 			model = new ModelAndView("info");
 			UserDto userDto = UserDto.transform(user);
@@ -69,9 +69,9 @@ public class WebController {
 	public ModelAndView changePassword(@PathVariable long id, HttpServletRequest request,
 	        HttpServletResponse response) {
 
-		User user = userService.findById(id);
+		User user = userRepository.findById(id);
 		UserChangePassword userUpdated = new UserChangePassword();
-		userUpdated.setId(user.getId());
+		userUpdated.setLogin(user.getLogin());
 
 		ModelAndView model = new ModelAndView("changePassword");
 		model.addObject("user", userUpdated);
@@ -82,7 +82,8 @@ public class WebController {
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
 	public ModelAndView changePasswordPost(@ModelAttribute("user") UserChangePassword userUpdated,
 	        HttpServletRequest request, HttpServletResponse response) {
-		User user = userService.findById(userUpdated.getId());
+
+		User user = userRepository.findByLogin(userUpdated.getLogin());
 
 		ModelAndView model = null;
 		//If password does not match the old password of the user, error
@@ -96,8 +97,7 @@ public class WebController {
 			model.addObject("errorMessage", "New password is equal to old password");
 		} else {
 			//If it´s correct, set the newPassword to the user and save it in the db
-			user.setPassword(userUpdated.getNewPassword());
-			userService.save(user);
+			participants.UpdateInfo(userUpdated.getLogin(), userUpdated.getPassword(), userUpdated.getNewPassword());
 
 			UserDto userDto = UserDto.transform(user);
 			model = new ModelAndView("info");
