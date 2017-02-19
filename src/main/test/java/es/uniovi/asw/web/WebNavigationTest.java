@@ -1,46 +1,59 @@
 package es.uniovi.asw.web;
 
-import static net.sourceforge.jwebunit.junit.JWebUnit.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Value;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.RequestBuilder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class WebNavigationTest {
-	
-	@Value("${local.server.port}")
-	private int port;
-	
-	@Before
-    public void prepare() {
-        setBaseUrl("http://localhost:8080/");
-    }
 
-    @Test
-    public void normalNavigationTest() {
-//        beginAt("participants_i3a/"); 
-//        assertTitleEquals("Citizen Participants Info Portal");
-//        clickLink("Get to the login page!");
-//        assertTitleEquals("Participants Login");
-//        setTextField("u", "freije@example.com");
-//        setTextField("p", "asdf");
-//        submit();
-//        assertTitleEquals("Participants Information");
-//        clickLink("Change your password");
-//        assertTitleEquals("Change your password");
-    }
-    
-    @Test
-    public void errorNavigationTest() {
-//        beginAt("/"); 
-//        assertTitleEquals("Citizen Participants Info Portal");
-//        clickLink("Get to the login page!");
-//        assertTitleEquals("Participants Login");
-//        setTextField("u", "foo");
-//        setTextField("p", "bar");
-//        submit();
-//        assertTitleEquals("Error");
-    }
+	@LocalServerPort
+	private int port;
+
+	@Autowired
+	private TestRestTemplate restTemplate;
+	
+	
+	public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+
+	@Test
+	public void IndexMappingTest() {
+		assertThat(restTemplate.getForObject("http://localhost:" + port + "/participants_i3a", String.class)
+				.contains("Welcome"));
+		
+		assertThat(restTemplate.getForObject("http://localhost:" + port + "/participants_i3a/welcome", String.class)
+				.contains("Welcome"));
+	}
+
+	@Test
+	public void LoginMappingTest() {
+		assertThat(restTemplate.getForObject("http://localhost:" + port + "/participants_i3a/login", String.class)
+				.contains("Login"));
+	}
+	
+	
+	@Test
+	public void LoginInfoTest() {
+		
+		RequestBuilder requestBuilder = post("/login")
+	            .param("u", "freije@example.com")
+	            .param("p", "asdf");
+		
+		assertThat(restTemplate.postForObject("http://localhost:" + port + "/participants_i3a/login", requestBuilder, String.class).contains("freije"));
+	}
+
 
 }

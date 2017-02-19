@@ -3,8 +3,9 @@ package es.uniovi.asw.dto;
 import es.uniovi.asw.domain.User;
 import es.uniovi.asw.util.AgeCalculator;
 
-public class UserDto {
+public class UserDto{
 
+	
 	private String firstname;
 	private String lastname;
 	private int age;
