@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Date;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -58,5 +59,13 @@ public class UserTest {
 
 		assertTrue(user1.equals(user2));
 	}
+	
+	
+	@Test
+	public void testEquals_Symmetric() {
+	    Assert.assertTrue(user1.equals(user1) && user1.equals(user1));
+	    Assert.assertTrue(user1.hashCode() == user1.hashCode());
+	}
+
 
 }
